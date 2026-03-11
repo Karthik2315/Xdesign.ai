@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Jost, Geist } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "sonner";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const jostSans = Jost({
+  subsets: ["latin"],
   weight:["100","200","300","400","500","600","700","800","900"]
 })
 
@@ -20,12 +21,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${jostSans.className} antialiased`}
       >
-        {children}
-      </body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster richColors position="bottom-center" />
+          </ThemeProvider>      </body>
     </html>
   );
 }
