@@ -26,7 +26,7 @@ const Header = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Avatar className="h-8 w-8 shrink-0 rounded-full">
+                  <Avatar className="h-8 w-8 shrink-0 rounded-full cursor-pointer">
                     <AvatarImage
                       src={user?.picture || ""}
                       alt={user?.given_name || ""}
