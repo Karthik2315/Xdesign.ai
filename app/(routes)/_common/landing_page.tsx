@@ -43,6 +43,11 @@ const LandingSection = () => {
   const handleSuggestionClick = (val:string)=>{
     setPromptText(val);
   }
+
+  const handleSubmit = ()=>{
+    if(!promptText) return ;
+    mutate(promptText);
+  }
   return (
     <div className='w-full min-h-screen'>
       <div className='flex flex-col'>
@@ -60,8 +65,8 @@ const LandingSection = () => {
                 <PromptInput className="ring-2 ring-primary" 
                 promptText={promptText}
                 setPromptText={setPromptText}
-                isLoading={false}
-                onSubmit={()=>{}}/>
+                isLoading={isPending}
+                onSubmit={handleSubmit}/>
               </div>
               <div className='flex flex-wrap justify-center gap-2 px-5'>
                 <Suggestions>
